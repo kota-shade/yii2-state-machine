@@ -8,7 +8,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "KotaShade\\Yii2StateMachine": "src/"
+      "KotaShade\\Yii2StateMachine\\": "src/"
     },
     "classmap": [
       "./Module.php"
