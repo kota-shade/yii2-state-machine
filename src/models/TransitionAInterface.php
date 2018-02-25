@@ -5,7 +5,7 @@
  * Date: 16.09.16
  * Time: 11:32
  */
-namespace KotaShade\yii2\models;
+namespace KotaShade\Yii2StateMachiney\models;
 
 use Doctrine\Common\Collections\ArrayCollection;
 

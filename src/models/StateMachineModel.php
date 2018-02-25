@@ -6,7 +6,7 @@
  * Time: 16:39
  */
 
-namespace KotaShade\yii2\models;
+namespace KotaShade\Yii2StateMachine\models;
 
 
 class StateMachineModel extends StateMachine

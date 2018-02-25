@@ -2,7 +2,7 @@
   "name": "kota-shade/yii2-state-machine",
   "description": "State machine for yii2",
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.0"
   },
   "repositories":[
   ],

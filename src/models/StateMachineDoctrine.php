@@ -6,7 +6,7 @@
  * Time: 16:32
  */
 
-namespace KotaShade\yii2\models;
+namespace KotaShade\Yii2StateMachine\models;
 
 use Yii;
 

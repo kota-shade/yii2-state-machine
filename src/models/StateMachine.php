@@ -5,7 +5,7 @@
  * Date: 24.02.18
  * Time: 21:21
  */
-namespace KotaShade\yii2\models;
+namespace KotaShade\Yii2StateMachine\models;
 
 use yii\base\Component;
 use yii\base\Model;
