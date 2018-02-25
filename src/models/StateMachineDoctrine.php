@@ -22,12 +22,29 @@ class StateMachineDoctrine extends StateMachine
     protected $em = null;
 
     /**
+     * @var \Doctrine\ORM\EntityRepository
+     */
+    protected $actionRepository;
+
+    /**
+     * имя словаря-ентити действий
+     * @var string
+     */
+    protected $actionDictionary = null;
+
+    /**
      * репозитарий ентити-таблицы_A переходов
      * @var \Doctrine\ORM\EntityRepository
      */
     private $transitionARepository = null;
 
-    protected function __construct(array $config = [])
+    /**
+     * имя атрибута, в котором хранится состояние, геттер и сеттер обязательны
+     * @var string
+     */
+    protected $stateAttribute = null;
+
+    public function __construct(array $config = [])
     {
         parent::__construct($config);
     }
@@ -40,7 +57,7 @@ class StateMachineDoctrine extends StateMachine
     public function init()
     {
         /** @var \yii\doctrine\components\DoctrineComponent $doctrineC */
-        $doctrineC = Yii::$app->{$entityManagerName};
+        $doctrineC = Yii::$app->{$this->entityManagerName};
         /** @var \Doctrine\ORM\EntityManager $em */
         $this->em = $doctrineC->getEntityManager();
     }
@@ -79,8 +96,8 @@ class StateMachineDoctrine extends StateMachine
             throw new ExceptionNS\InvalidStateGetter('method '
                 . $getStateMethod . "doesn't exists in class " . get_class($objE));
         }
-        $objE->$getStateMethod($stateE);
-        return $objE;
+        $stateE = $objE->$getStateMethod();
+        return $stateE;
     }
 
     /**
@@ -100,4 +117,24 @@ class StateMachineDoctrine extends StateMachine
         return $objE;
     }
 
+    /**
+     * @param $action
+     * @return null|object
+     */
+    protected function getActionEntity($action)
+    {
+        $actionE = $this->getActionRepository()->find($action);
+        return $actionE;
+    }
+
+    /**
+     * @return \Doctrine\ORM\EntityRepository
+     */
+    protected function getActionRepository()
+    {
+        if ($this->actionRepository == null) {
+            $this->actionRepository = $this->em->getRepository($this->actionDictionary);
+        }
+        return $this->actionRepository;
+    }
 }

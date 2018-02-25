@@ -9,11 +9,10 @@ namespace KotaShade\Yii2StateMachine\models;
 
 use yii\base\Component;
 use yii\base\Model;
-use KotaShade\yii2\models\TransitionAInterface;
+use KotaShade\Yii2StateMachine\models\TransitionAInterface;
 
-class StateMachine extends Model
+abstract class StateMachine extends Model
 {
-    protected $actionRepository;
 
     public function doAction($objE, $action, array $data = [])
     {
@@ -73,6 +72,7 @@ class StateMachine extends Model
     abstract protected function getTransitionAForState($stateE, $actionE);
     abstract protected function getObjectState($objE);
     abstract protected function setObjectState($objE, $stateE);
+    abstract protected function getActionEntity($action);
 
     /**
      * выполняет валидацию по условию $condition
@@ -116,11 +116,6 @@ class StateMachine extends Model
             }
         }
         return $validators;
-    }
-
-    protected function getActionEntity($action)
-    {
-        $actionE = $this->actionRepository->find($action);
     }
 
     /**
