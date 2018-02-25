@@ -1,0 +1,17 @@
+{
+  "name": "kota-shade/yii2-state-machine",
+  "description": "State machine for yii2",
+  "require": {
+    "php": ">=7.0",
+  },
+  "repositories":[
+  ],
+  "autoload": {
+    "psr-4": {
+      "KotaShade\\Yii2StateMachine": "src/"
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
+}
