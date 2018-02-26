@@ -8,7 +8,9 @@
 
 namespace KotaShade\Yii2StateMachine\models;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Yii;
+use KotaShade\Yii2StateMachine\exceptions as ExceptionNS;
 
 class StateMachineDoctrine extends StateMachine
 {
@@ -89,11 +91,22 @@ class StateMachineDoctrine extends StateMachine
         return $this->transitionARepository;
     }
 
+    /**
+     * @param TransitionAInterface $transitionE
+     * @return array|\Traversable
+     */
+    protected function getTransitionBList(TransitionAInterface $transitionE)
+    {
+        /** @var ArrayCollection $ret */
+        $ret = $transitionE->getTransitionsB();
+        return $ret->toArray();
+    }
+
     protected function getObjectState($objE)
     {
         $getStateMethod = 'get' . ucfirst($this->stateAttribute);
         if (method_exists($objE, $getStateMethod) == false) {
-            throw new ExceptionNS\InvalidStateGetter('method '
+            throw new ExceptionNS\InvalidStateMethod('method '
                 . $getStateMethod . "doesn't exists in class " . get_class($objE));
         }
         $stateE = $objE->$getStateMethod();
@@ -110,7 +123,7 @@ class StateMachineDoctrine extends StateMachine
     {
         $setStateMethod = 'set' . ucfirst($this->stateAttribute);
         if (method_exists($objE, $setStateMethod) == false) {
-            throw new ExceptionNS\InvalidStateGetter('method '
+            throw new ExceptionNS\InvalidStateMethod('method '
                 . $setStateMethod . "doesn't exist in class " . get_class($objE));
         }
         $objE->$setStateMethod($stateE);
