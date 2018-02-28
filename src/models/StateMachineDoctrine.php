@@ -58,7 +58,7 @@ class StateMachineDoctrine extends StateMachine
      */
     public function init()
     {
-        /** @var \yii\doctrine\components\DoctrineComponent $doctrineC */
+        /** @var \KotaShade\doctrine\components\DoctrineComponent $doctrineC */
         $doctrineC = Yii::$app->{$this->entityManagerName};
         /** @var \Doctrine\ORM\EntityManager $em */
         $this->em = $doctrineC->getEntityManager();
