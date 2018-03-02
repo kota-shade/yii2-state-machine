@@ -17,31 +17,31 @@ use yii\base\BaseObject as BaseClass;
  * Interface ValidatorInterface
  * @package KotaShade\Yii2StateMachine\validators
  */
-abstract class Validator extends BaseClass
+abstract class Validator extends BaseClass implements ValidatorInterface
 {
-    protected $msgList = [];
+    protected $messages = [];
 
     /**
      * @param object $obj - this object is processed by state machine
      * @param array $data - extra data for validation
      * @return bool
      */
-    abstract public function validate($obj, $data=[]);
+    abstract public function validate($obj, array $data=[]);
 
     /**
      * @return array
      */
     public function getMessages()
     {
-        return $this->msgList;
+        return $this->messages;
     }
 
     public function setMessage($msg, $key=null)
     {
         if ($key !== null) {
-            $this->msgList[$key] = $msg;
+            $this->messages[$key] = $msg;
         } else {
-            $this->msgList[] = $msg;
+            $this->messages[] = $msg;
         }
     }
 }
