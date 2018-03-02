@@ -99,8 +99,13 @@ class ValidatorChain extends Validator
             $validator = Yii::createObject($options);
         } else {
             $name = Yii::getAlias($name);
-            /** @var ValidatorInterface $validator */
-            $validator = Yii::createObject($name, $options);
+            /**
+             * @var ValidatorInterface $validator
+             * NB!!! createOptions вторым параметром принимает массив аргументов, которые будут переданы в конструктор
+             * в порядке их следования в массиве.
+             * у нас единственный аргумент - конфигурация в виде массива опций
+             */
+            $validator = Yii::createObject($name, [$options]);
         }
 
         $this->attach($validator, $breakChainOnFailure, $priority);
