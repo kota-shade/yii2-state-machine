@@ -29,7 +29,7 @@ trait StateMachine
             throw new ExceptionNS\ActionNotExistsForState($objE, $action);
         }
         $conditionName = $transitionE->getCondition();
-        if ($this->checkActionCondition($errors, $conditionName, $objE, $data=[]) == false) {
+        if ($this->checkActionCondition($errors, $conditionName, $objE, $data) == false) {
             throw new ExceptionNS\ActionNotAllowed($objE, $action, $errors);
         }
 
