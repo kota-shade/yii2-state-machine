@@ -8,12 +8,12 @@
 namespace KotaShade\Yii2StateMachine\models;
 
 use Yii;
-use yii\base\Component;
-use yii\base\Model;
+//use yii\base\Component;
+//use yii\base\Model;
 use KotaShade\Yii2StateMachine\models\TransitionAInterface;
 use KotaShade\Yii2StateMachine\exceptions as ExceptionNS;
 
-abstract class StateMachine extends Component
+trait StateMachine
 {
 
     /**
